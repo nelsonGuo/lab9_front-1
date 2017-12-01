@@ -1,96 +1,65 @@
 <?php
- class TaskTest extends TestCase
+
+require '../application/models/Task.php';
+
+if(!class_exists('PHPUnit_Framework_TestCase')) {
+  class_alias('PHPUnit\Framework\TestCase','PHPUnit_Framework_TestCase');
+}
+
+class TaskTest extends PHPUnit_Framework_TestCase
+{
+  private $testTask;
+
+  public function setUp()
   {
-    private $CI;
+    $this->testTask = new Task();
+  }
+  //task test
+  public function testTaskSuccess()
+  {
+    $taskSet = $this->testTask->setTask('abc 123');
+    $this->assertTrue($taskSet);
+  }
 
-    public function setUp()
-    {
-      // Load CI instance normally
+  public function testTaskFailure()
+  {
+    $taskSet = $this->testTask->setTask('^*^*%');
 
-      $this->CI = &get_instance();
-      $this->CI->load->model('task');
+    $this->assertFalse($taskSet);
+  }
 
-    }
-
-
-    /**
-     * unit test for priority
-     */
-    public function testPriority(){
-
-        //invalid value should not change its default value
-        $this->CI->task->priority = 4;//greater
-        $this->assertNull($this->CI->task->priority, 'test >= 4');
-        
-        //invalid value type should not change its default value
-        $this->CI->task->priority = 'text';
-        $this->assertNull($this->CI->task->priority, 'test non-integer');
-        
-        //valid value
-        $this->CI->task->priority = 3;
-        $this->assertEquals(3, $this->CI->task->priority);
-
-        //valid value
-        $this->CI->task->priority = 2;
-        $this->assertEquals(2, $this->CI->task->priority);
-
-        //valid value
-        $this->CI->task->priority = 1;
-        $this->assertEquals(1, $this->CI->task->priority);
-    }
-
-    /**
-     * unit test for size
-     */
-    public function testSize(){
-        //invalid value should not change its default value
-        $this->CI->task->size = 4;//greater
-        $this->assertNull($this->CI->task->size, 'test >= 4');
-        
-        //invalid value type should not change its default value
-        $this->CI->task->size = 'text';
-        $this->assertNull($this->CI->task->size, 'test non-integer');
-        
-        //valid value
-        $this->CI->task->size = 3;
-        $this->assertEquals(3, $this->CI->task->size);
-
-                //valid value
-        $this->CI->task->size = 2;
-        $this->assertEquals(2, $this->CI->task->size);
-
-                //valid value
-        $this->CI->task->size = 1;
-        $this->assertEquals(1, $this->CI->task->size);
-    }
-    
-    /**
-     * unit test for group
-     */
-    public function testGroup(){
-        //invalid value should not change its default value
-        $this->CI->task->group = 5;//greater
-        $this->assertNull($this->CI->task->group, 'test >= 5');
-        
-        //invalid value type should not change its default value
-        $this->CI->task->group = 'text';
-        $this->assertNull($this->CI->task->group, 'test non-integer');
-        
-        //valid value
-        $this->CI->task->group = 4;
-        $this->assertEquals(4, $this->CI->task->group);
-
-        //valid value
-        $this->CI->task->group = 3;
-        $this->assertEquals(3, $this->CI->task->group);
-
-        //valid value
-        $this->CI->task->group = 2;
-        $this->assertEquals(2, $this->CI->task->group);
-
-        //valid value
-        $this->CI->task->group = 1;
-        $this->assertEquals(1, $this->CI->task->group);
-    }
+  //size test
+  public function testSizeSuccess(){
+    $sizeSet = $this->testTask->setSize(3);
+    $this->assertTrue($sizeSet);
 
   }
+
+  public function testSizeFailure(){
+    $sizeSet = $this->testTask->setSize(5);
+    $this->assertFalse($sizeSet);
+  }
+
+  //group test
+  public function testGroupSuccess(){
+    $groupSet = $this->testTask->setGroup(3);
+    $this->assertTrue($groupSet);
+
+  }
+
+  public function testGroupFailure(){
+    $groupSet = $this->testTask->setGroup(6);
+    $this->assertFalse($groupSet);
+  }
+
+  //priority test
+  public function testPrioritySuccess(){
+    $prioritySet = $this->testTask->setPriority(3);
+    $this->assertTrue($prioritySet);
+  }
+
+  public function testPriorityFailure(){
+    $prioritySet = $this->testTask->setPriority(5);
+    $this->assertFalse($prioritySet);
+  }
+}

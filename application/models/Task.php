@@ -1,51 +1,65 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
-
+require '../application/core/Entity.php';
 class Task extends Entity {
 
-private $priority =NULL;//low|medium|high
-private $pize = NULL;//samll|medium|large
-private $group =NULL;//house|school|work|family
-private $status =NULL;//in progress|complete
-    
-
-    /**
-     * Property Magic Getter
-     * @param String $property the property to get
-     * @return mixed value of the property
-     */
-    public function __get($property){
-        if(isset($this->$property)){
-            return $this->$property;
-        }
-        else{
-            return NULL;
-        }
-    }
-
-    public function setPriority($value){
-        //validate input against Rule
-        if(is_int($value) && $value < 4){
-            $this->priority = $value;
-        }
-    }
+	protected $task;
+	protected $priority;
+	protected $size;
+	protected $group;
 
 
-    public function setSize($value){
-        //validate input against Rule
-        if(is_int($value) && $value < 4){
-            $this->size = $value;
-        }
-    }
-    
-    public function setGroup($value){
-        //validate input against Rule
-        if(is_int($value) && $value < 5){
-            $this->group = $value;
-        }
-    }
-   
+	//check the task
+	public function setTask($value) {
+
+		$strsize = strlen($value);
+		if(!is_string($value) || $strsize > 64) {
+			return false;
+		}
+
+		for($x = 0;$x < $strsize; $x++) {
+			$c = $value[$x];
+			if(!(ctype_alnum($c) || ctype_space($c))) {
+				return false;
+			}
+		}
+		$this->task = $value;
+		return true;
+	}
+	//check the priority
+	public function setPriority($value) {
+
+		if(is_int($value) && $value < 4) {
+			$this->priority = $value;
+			return true;
+		} 
+
+		return false;
+
+	}
+	//check the size
+	public function setSize($value) {
+
+		if(is_int($value) && $value < 4) {
+			$this->size = $value;
+			return true;
+		} 
+
+		return false;
+		
+	}
+	//check the group
+	public function setGroup($value) {
+
+		if(is_int($value) && $value < 5) {
+			$this->group = $value;
+			return true;
+		} 
+
+		return false;
+	}
 
 }
 
+
+?>

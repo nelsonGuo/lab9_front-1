@@ -1,7 +1,9 @@
+	Please, plase, please help with with my COMP4711 Lab. I am clueless.
 
+	I can pay you in chocolate chip cookies, ten dozen per featurecompleted bug free!!!
 
-Please, plase, please help with with my *OS* homework. I am clueless.
+	Contact me via Email 
 
-I can pay you **one million dollars**, and make sure 100% correct!!!
+	Jim Parry 
 
-Contact me via PM at **123-456-7890**.
+	jim_parry@bcit.ca

@@ -4,7 +4,6 @@
 */cache/*
 !*/cache/index.html
 !*/cache/.htaccess
-*/controllers/tmp
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
@@ -17,4 +16,6 @@ application/logs/*
 !application/logs/.htaccess
 /vendor/
 /nbproject/private/
-/tests/*/
+
+/tmp/*
+/tests/report/*

@@ -1,5 +1,7 @@
+<?php?>
 <h3>Tasks by Category</h3>
-<table class="table">
+<form method='POST' action='{completer}'>
+    <table class="table">
         <tr>
             <th>Id</th>
             <th>Task</th>
@@ -12,4 +14,6 @@
             <td>{group}</td>
         </tr>
         {/display_tasks}    
-</table>
+    </table>
+<input type='submit' value='Complete checked tasks'/>
+</form>

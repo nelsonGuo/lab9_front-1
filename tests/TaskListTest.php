@@ -1,36 +1,33 @@
 <?php
-   use PHPUnit\Framework\TestCase;
 
-   class TaskListTest extends TestCase
-  {  
-  
-	private $CI;
-     
+if(!class_exists('PHPUnit_Framework_TestCase')) {
+  class_alias('PHPUnit\Framework\TestCase','PHPUnit_Framework_TestCase');
+}
+
+/* run phpunit from command line directly */
+ class TaskListTest extends PHPUnit_Framework_TestCase
+  {
+    private $CI;
+    private $t;
+
+    //only CI setup goes here
     public function setUp()
     {
-        $this->CI = &get_instance();
-		$this->CI->load->model('Tasks');
-    }
-	  
-    
-    public function testMoreRule ()
-    {
-	   $tasks = $this->CI->Tasks->all();
-	   $countDone = 0;
-	   $countTodo = 0;
-	   
-	   foreach ($tasks as $task)
-	   {
-		   if($task->status == 2) {
-			   $countDone++;
-		   } else {
-			   $countTodo++;
-		   }
-	   }
-	   
-	   $result = ($countTodo - $countDone) > 0 ? true : false;
-		   
-	   $this->assertEquals(true, $result);
+      // Load CI instance normally
+      $this->CI = &get_instance();
     }
 
+    public function testMoreUncompletedTasks()
+    {
+      $undone = 0;
+      $done = 0;
+      foreach ($this->CI->tasks->all() as $task)
+      {
+        if ($task->status != 2)
+          $undone++;
+        else 
+          $done++;
+      }
+      $this->assertTrue($done < $undone);
+    }
   }

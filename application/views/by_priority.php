@@ -1,6 +1,6 @@
 <h3>Tasks by Priority</h3>
 <form method='POST' action='{completer}'>
-<table class="table">
+    <table class="table">
         <tr>
             <th>Id</th>
             <th></th>   <!-- INSERT this line -->
@@ -16,6 +16,6 @@
             <td>{priority}</td>
         </tr>
         {/display_tasks}    
-</table>
+    </table>
 <input type='submit' value='Complete checked tasks'/>
 </form>

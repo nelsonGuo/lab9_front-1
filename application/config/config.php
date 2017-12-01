@@ -7,7 +7,7 @@ $config['menu_choices'] = array(
         array('name' => 'Home', 'link' => '/'),
         array('name' => 'Work', 'link' => '/views'),
         array('name' => 'Maintenance', 'link' => '/mtce'),
-        array('name' => 'Help Wanted', 'link' => '/Helpme'),
+        array('name' => 'Help Wanted', 'link' => '/helpme'),
         )
     );
 
@@ -380,10 +380,11 @@ $config['encryption_key'] = '';
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = '/tmp';     // this should be a writeable folder on your system
+$config['sess_save_path'] = '../tmp';     // this should be a writeable folder on your system
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
+
 /*
 |--------------------------------------------------------------------------
 | Cookie Related Variables
