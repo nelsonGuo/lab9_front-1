@@ -36,7 +36,6 @@ class CSV_Model extends Memory_Model
 		// start with an empty collection
 		$this->_data = array(); // an array of objects
 		$this->fields = array(); // an array of strings
-		
 		// and populate the collection
 		$this->load();
 	}
